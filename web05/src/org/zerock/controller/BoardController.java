@@ -39,7 +39,7 @@ public class BoardController extends AbstractController{
 		int count = service.register(vo);
 		
 		
-		return "result";
+		return "views/board/result";
 	}
 	
 	public String listGET(HttpServletRequest request, HttpServletResponse response) throws Exception{
