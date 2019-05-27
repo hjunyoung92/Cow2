@@ -14,6 +14,15 @@ public class BoardDAOTests {
 	BoardDAO dao = new BoardDAO();
 	
 	@Test
+	public void testRead() {
+		log.info(dao.read(10793784));
+	}
+	
+	@Test
+	public void testList100() {
+		dao.list100().forEach(vo ->log.info(vo));
+	}
+	@Test
 	public void testInsert() {
 		
 		int result = 0;
