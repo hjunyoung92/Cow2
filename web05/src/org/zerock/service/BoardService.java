@@ -23,15 +23,21 @@ public class BoardService {
 		return dao.insert(vo);
 	}
 
-	public List<BoardVO> get100() {
+	public List<BoardVO> getList(int page) {
 		
-		return dao.list100();
+		return dao.listPage(page);
 	}
 	
 	public BoardVO findById(Integer bno) {
 		return dao.read(bno);
 		
 	}
+	
+	public int getTotalCount() {
+		return dao.countTotal();
+	}
+	
+	
 	
 	
 }

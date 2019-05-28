@@ -26,7 +26,7 @@ public class BoardDAOTests {
 
 	@Test
 	public void testList100() {
-		dao.list100().forEach(vo -> log.info(vo));
+		dao.listPage(0).forEach(vo -> log.info(vo));
 	}
 
 	@Test

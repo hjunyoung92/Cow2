@@ -33,6 +33,7 @@ textarea {
 	
 	<form action="/board/remove" method = "post" target="zeroFrame">
 		<input type = "hidden" name ="bno" value="${vo.bno}">
+		<input type = "hidden" name ="page" value="${param.page}">
 		<button>REMOVE</button> 
 	</form>
 	

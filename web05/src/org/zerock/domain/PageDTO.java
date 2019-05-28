@@ -25,7 +25,7 @@ public class PageDTO {
 		} else {
 			end = tempEnd;
 		}
-		next = (tempEnd * 10 ) < 10;
+		next = (tempEnd * 10 ) < total;
 
 	}
 	

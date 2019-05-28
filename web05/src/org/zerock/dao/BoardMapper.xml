@@ -5,25 +5,41 @@
   
 <mapper namespace="org.zerock.dao.BoardMapper">
 	<insert id="insert" parameterType="org.zerock.domain.BoardVO">
-		insert into tbl_board (bno, title, content, writer)
-		values (seq_board.nextval ,#{title} ,#{content} ,#{writer})
+	insert into tbl_board (bno, title, content, writer)
+	values (seq_board.nextval , #{title}, #{content}, #{writer})
 	</insert>
-
-	<select id="list100" resultType="org.zerock.domain.BoardVO">
-    <![CDATA[
-    select * from tbl_board
-    where bno > 0
-    and rownum <= 100
-    order by bno desc
-    ]]>
+	
+	<select id="listPage" 
+			resultType="org.zerock.domain.BoardVO"
+			parameterType="int">
+	<![CDATA[		
+select
+  bno,TITLE,content,writer, REGDATE
+from
+  (select /*+INDEX_DESC(tbl_board pk_board) */
+       rownum rn, bno,TITLE,content,writer, REGDATE
+    from TBL_BOARD
+    where bno > 0 and rownum <= (#{page} * 10)
+  )
+where rn > (#{page} -1) *10
+	]]>		
 	</select>
 	
 	<select id="read" parameterType="int" 
-	resultType="org.zerock.domain.BoardVO">
-	select * from tbl_board where bno = #{bno}
+	  resultType="org.zerock.domain.BoardVO">
+	select * from tbl_board where bno = #{bno}	
 	</select>
 	
 	<delete id="delete" parameterType="int">
 	delete from tbl_board where bno = #{bno}
 	</delete>
+	
+	<select id="countTotal" resultType="int">
+	select count(bno) from tbl_board where bno > 0
+	</select>
+		
 </mapper>
+
+
+
+
