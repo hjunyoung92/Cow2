@@ -22,4 +22,8 @@
 	resultType="org.zerock.domain.BoardVO">
 	select * from tbl_board where bno = #{bno}
 	</select>
+	
+	<delete id="delete" parameterType="int">
+	delete from tbl_board where bno = #{bno}
+	</delete>
 </mapper>

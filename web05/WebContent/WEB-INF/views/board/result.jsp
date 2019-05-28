@@ -9,11 +9,7 @@
 <body>
 	<h1>처리 완료</h1>
 	<script>
-	setTimeout(() => {
-		
-		self.location="/board/list";
-		
-	}, 1000);
+	setTimeout(function(){self.location="/board/list";}, 1000);
 	</script>
 
 

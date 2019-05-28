@@ -74,4 +74,15 @@ public abstract class AbstractController extends HttpServlet {
 		return result;
 	}
 
+	protected Integer getInt(String paramName, HttpServletRequest req) {
+		Integer result = null;
+	
+	try {
+		result = Integer.parseInt(req.getParameter(paramName));
+	} catch (Exception e) {
+		// TODO: handle exception
+	}
+	
+	return result;
+	}
 }

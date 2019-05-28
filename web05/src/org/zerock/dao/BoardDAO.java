@@ -12,6 +12,19 @@ public class BoardDAO {
 
 	private static final String PRE = "org.zerock.dao.";
 	protected String mapperName = "BoardMapper";
+
+	public void delete(Integer bno) {
+
+		log.info(bno);
+
+		try (SqlSession session = MyBatisLoader.sqlSessionFactory.openSession(true);) {
+			session.delete(PRE + mapperName + ".delete", bno);
+
+		} catch (Exception e) {
+			throw e;
+		}
+
+	}
 	
 	public BoardVO read(Integer bno) {
 		BoardVO result = null;
@@ -22,14 +35,9 @@ public class BoardDAO {
 		} catch (Exception e) {
 			throw e;
 		}
-		
-		
-		
 		return result;
 		
 	}
-	
-	
 	public List<BoardVO> list100(){
 		List<BoardVO> result = null;
 		
@@ -39,9 +47,6 @@ public class BoardDAO {
 		} catch (Exception e) {
 			throw e;
 		}
-		
-		
-		
 		return result;
 	}
 	public int insert(BoardVO vo) {
@@ -55,8 +60,6 @@ public class BoardDAO {
 		} catch (Exception e) {
 			throw e;
 		}
-		
-		
 		
 		return result;
 	}
