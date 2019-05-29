@@ -31,22 +31,27 @@ public abstract class AbstractController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		request.setCharacterEncoding("UTF-8");
-		
+
 		String jspName = null;
 		try {
 			jspName = execute(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		RequestDispatcher dispatcher =
-			request.getRequestDispatcher("/WEB-INF/" + jspName +".jsp");
+
+		if (jspName.startsWith("redirect:")) {
+			String targetURL = jspName.substring(9);
+			response.sendRedirect(targetURL);
+			return;
+		}
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/" + jspName + ".jsp");
 		dispatcher.forward(request, response);
-		
+
 	}
 	
 	protected String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

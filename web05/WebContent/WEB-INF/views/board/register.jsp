@@ -33,7 +33,7 @@
   <ul>
     <li><input name="title" placeholder="제목을 입력하세요"></li>
     <li><textarea  rows="5" name="content"></textarea></li>
-    <li><input name="writer" placeholder="작성자를 입력하세요"></li>
+    <li><input name="writer" value="${LOGINID}" readonly='readonly'></li>
     <li><input name="attach" type='file'></li>
   </ul>
   <button>Save</button>
